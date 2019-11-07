@@ -25,23 +25,20 @@ class ReadList extends Component {
     readList = () => {
         const datas = this.state.listdata;
         return datas.lists.map((item, index) =>
-        {
-            console.log(item);
-            console.log(item.cards);
+        {            
             return (
-            <div key={item.listno}>                
-                <div>
+            <div className = "listObject" key={item.listno}>                
+                <div className = "listname">
                     <h2>{item.listtitle}</h2>                    
                 </div>
                 <PrintMenu item ={item} index = {index}></PrintMenu>
                 <ReadCard cards = {item.cards} listno = {item.listno}></ReadCard>
                 <AddCard listno = {item.listno}></AddCard>
             </div>)
-        }
-        )
+        })
     }
-    render() {
-        let readList = this.readList();
+    render() {        
+        let readList = this.readList();        
         return readList;
     }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import CardSetting from './CardSetting';
-import store from '../modules/counter';
 
 
 class ReadCard extends Component {
@@ -12,21 +11,21 @@ class ReadCard extends Component {
             cardtype: true
         };
     }
-    
     render() {
         console.log(this.props)
         const datas = this.props.cards;
         const listno = this.props.listno;
         let ReadCard = datas.map(({ cardNo, cardtitle }) =>
-            <div key={cardNo}>
-                <div>
-                    <h2 onClick={(e) => { e.preventDefault(); this.setState({ cardtype: false }) }}>{cardtitle}</h2>
-                </div>
-                <div>
-                    {this.state.cardtype === false ?
-                        (<CardSetting cardNo={cardNo} cardtitle={cardtitle} listno = {listno} ></CardSetting>)
-                        : (<div></div>)}
-                </div>
+            <div key={cardNo}>                
+                <div className = "cardtext" onClick={(e) => { e.preventDefault(); this.setState({ cardtype: false }) }}>{cardtitle}</div>
+                {this.state.cardtype === false ?
+                    (<div className = "boardbase">
+                    <div className = "cardboard">                   
+                    <CardSetting cardNo={cardNo} cardtitle={cardtitle} listno={listno} >                      
+                    </CardSetting>
+                    <div className = "cardexit" onClick={(e) => { e.preventDefault(); this.setState({ cardtype: true }) }}>X</div>
+                    </div></div>)
+                    : (<div></div>)}
             </div>)
         return ReadCard;
     }

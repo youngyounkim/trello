@@ -23,24 +23,25 @@ class AddList extends Component {
     this.setState({ condition: true, text: '' })
   }
   render() {
-    // const addclass = "";
-    // if(condition === true){
-    //   addclass = "listadd";
-    // }
-    // else if(condition === false){
-      
-    // }
-    return <div class = "listadd">
+    let classname = null;
+    if(this.state.condition === true){
+      classname = "listadd"
+    }
+    else if(this.state.condition === false){
+      classname = "liststate"
+    }
+    return <div className = {classname}>
       {this.state.condition === true ?
-        (<div class = "addbtn" type="button" title="addlist" onClick={(e) => {
+        (<div className = "addbtn" type="button" title="addlist" onClick={(e) => {
           e.preventDefault();
           this.setState({ condition: false });
         }}>일정 추가</div>)
-        : (<form class = "addform" onSubmit={this.handleSubmit}>
+        : (<form className = "addform" onSubmit={this.handleSubmit}>
           <label>
-            <input class = "listinput" type="text" placeholder="제목을 입력해주세요" value={this.state.text} onChange={this.handleChange}></input>
+            <input className = "listinput" type="text" placeholder="제목을 입력해주세요" value={this.state.text} onChange={this.handleChange}></input>
           </label>
-          <input class = "addinput" type="submit" value="추가" />
+          <input className = "addinput" type="submit" value="추가" />
+          <div className = "addexit" onClick = {(e) =>{e.preventDefault(); this.setState({condition: true, text: ''})}}>x</div>
         </form>)}
     </div>;
   }

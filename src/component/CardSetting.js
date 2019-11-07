@@ -15,6 +15,7 @@ class CardSetting extends Component {
       cardComment: "",
       descripstate: true,
       Comments : true,
+      timepicker : true,
       rowsvalue: 0,
       Date : new Date()
     };
@@ -32,20 +33,9 @@ class CardSetting extends Component {
   textSubmit = (e) => {    
     e.preventDefault();
     store.dispatch(card_des(this.state.cardDescrip, this.props.listno, this.props.cardNo));
-    this.setState({descripstate : false});
-    console.log(e)
-    console.log(e.target)
-    console.log(this.props.listno)
-    // if(e.target.id === "textarea"){
-    //   store.dispatch(card_des(this.state.cardDescrip, this.props.listno));
-    //   this.setState({descripstate : false});
-    //   console.log("gkgk")
-    // }
-    // else if(e.target.id === "comments"){
-    //   store.dispatch(card_com(this.state.cardComment, this.props.listno));
-    //   console.log("gkgk")
-    // }        
+    this.setState({descripstate : false});         
   }
+  //덧글을 카드에 추가
   comSubmit = (e) => {
     e.preventDefault();
     store.dispatch(card_com(this.state.cardComment, this.props.listno, this.props.cardNo));
@@ -56,22 +46,36 @@ class CardSetting extends Component {
   }
   render() {
     // 입력한 텍스트 크기에 따라 textarea의 세로 크기를 확장 및 축소
-    let length = this.state.cardDescrip.length;
+    let length = this.state.cardDescrip.length;    
     if (length / this.state.rowsvalue >= 40) {
-      let value = this.state.rowsvalue
+      const value = this.state.rowsvalue
       this.setState({ rowsvalue: value + 1 });
     }
     else if (40 * (this.state.rowsvalue - 1) > length) {
-      const a = length % this.state.rowsvalue;
-      this.setState({ rowsvalue: a });
+      const value = length % this.state.rowsvalue;
+      this.setState({ rowsvalue: value });
     }    
     var d = this.state.Date;
     var k = d.getMonth() + 1;
     const date = d.getFullYear() + "/" + k + "/" + d.getDate()
     
-    return <div>
-      <h3>{this.state.cardtitle}</h3>
+    return <div className = "cardsetting">
       <div>
+        <img src = "./icon1.PNG"></img>
+        {this.state.cardtitle}
+      </div>
+      <img src = "./icon1.PNG"></img>
+      {this.state.timepicker === true ?
+      (<div onClick = {(e) => {
+        e.preventDefault(); 
+        this.setState({timepicker: false})}}>{date}</div>) 
+      : (<div className = "timePicker">
+        <input value = {date}></input>
+        <DatePicker selected = {this.state.Date} onChange = {this.dateChange} inline showTimeSelect />
+        <button onClick = {(e) => {e.preventDefault(); this.setState({timepicker: true})}}>확인</button>
+      </div>)}      
+      <div>
+      <img src = "./icon1.PNG"></img>
       {this.state.descripstate === true ?
         (<h2 onClick={(e) => { e.preventDefault(); this.setState({ descripstate: false }) }}>입력해라</h2>)
         : (<form onSubmit={this.textSubmit}>
@@ -82,6 +86,7 @@ class CardSetting extends Component {
         </form>)}
       </div>
       <div>
+      <img src = "./icon1.PNG"></img>
       {this.state.Comments === true ? 
       (<h2  onClick={(e) => { e.preventDefault(); this.setState({ Comments: false }) }}>입력해라</h2>) 
       : (<form onSubmit={this.comSubmit}>
@@ -91,11 +96,7 @@ class CardSetting extends Component {
         <input type="submit" value="추가" onClick={(e) => { e.preventDefault(); this.setState({ Comments: true }) }} />
       </form>)}
       </div>
-      <div>
-        <input value = {date}></input>
-      <DatePicker selected = {this.state.Date} onChange = {this.dateChange} inline showTimeSelect />
-      </div>
-     
+      
     </div>
   }
 }
