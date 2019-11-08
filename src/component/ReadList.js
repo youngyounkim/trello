@@ -21,9 +21,11 @@ class ReadList extends Component {
         });
         
     }
+
     //state에 저장된 값들을 읽어 list를 반환
     readList = () => {
         const datas = this.state.listdata;
+
         return datas.lists.map((item, index) =>
         {            
             return (
@@ -37,6 +39,7 @@ class ReadList extends Component {
             </div>)
         })
     }
+    
     render() {        
         let readList = this.readList();        
         return readList;
