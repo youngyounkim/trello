@@ -11,9 +11,31 @@ body {
 h2{
   margin: 0px;
 }
+h3{
+  margin: 4px;
+  font-size: 15px;
+}
+h4{
+  margin: 4px;
+}
 textarea{
   resize: none;
+  min-height: 50px;
 }
+ul{
+  margin-left: -40px;
+}
+a:link { 
+  color: #f4f5f7; 
+  text-decoration: none;
+}
+ a:visited { 
+  color: #f4f5f7; 
+  text-decoration: none;}
+ a:hover {
+  color: #f4f5f7;
+  text-decoration: none;}
+
 .mainpage {
   background: rgba(0,0,0,.15);
   height: 32px;
@@ -22,43 +44,27 @@ textarea{
   display: flex;
   min-height: 40px;
 }
-
 .mainbar {
   background-color: rgb(75, 191, 107);
 }
-
 .logo{
   display: block;
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-    top: 5px;
-}
-.logo1{
-  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-loading-logo.d73159084f5122775d4d.gif);
-  background-size: 18px 18px;
-  display: inline-block;
-  opacity: 0;
-  height: 18px;
-  right: 59px;
+  left: 50%;
   position: absolute;
-  top: 6px;
-  width: 18px;
+  transform: translateX(-50%);
+  top: 5px;
 }
-.logo2{
-  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-2x.01ef898811a879595cea.png);
-  background-position: 100% 0;
-  background-repeat: no-repeat;
-  background-size: 80px 30px;
-  cursor: pointer;
-  display: inline-block;
-  height: 30px;
-  width: 80px;
+.logtext{
+  color: #f4f5f7;
+  font-size: 20px;
+  padding-top: 4px;
 }
 .listadd{
+  position: absolute;
   width: 272px;
   margin: 8px 0px 0px 8px;
   height: 40px;
+  top: 13px;
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
@@ -127,7 +133,7 @@ textarea{
   display: inline-block;
 }
 .listObject{
-  float: left;
+  position: relative;
   width: 272px;  
   background-color: #ebecf0;
   margin: 8px 0px 0px 8px;
@@ -136,7 +142,8 @@ textarea{
 }
 .listmenu{
   position: absolute;  
-  top: 12px;
+  top: 4px;
+  left: 240px;
   padding: 5px 7px 20px 7px;
   border-radius: 3px;
   font-size: 22px;
@@ -145,11 +152,19 @@ textarea{
 .menu{
   position: absolute;
   background-color: #ebecf0;
+  left: 240px;
   width: 250px;
   height: auto;
   font-size: 15px;
   z-index: 2;
   border-radius: 3px;
+}
+.menutitle{
+  text-align: center;
+  content: "";
+  border-bottom: 1px solid #6666669f;
+  padding: 5px;
+  margin: 0px 10px;
 }
 .menubutton{
   padding: 5px;
@@ -159,11 +174,25 @@ textarea{
 }
 .menuexit{
   position: absolute;
-  left: 230px;
-  top: 0px;
+  padding: 2px 6px;
+  left: 225px;
+  top: 3px;
 }
-.menutitle{
-
+.movelist{
+  height: 60px;
+  margin: 0px;
+  content: "";
+  border-top: 1px solid #6666669f;
+  border-bottom: 1px solid #6666669f;
+  padding: 5px;
+  margin: 0px 10px;
+}
+#selbox{
+  position: relative;
+  float: left;
+  top: 4px;  
+  width: 150px;
+  height: 26px;
 }
 .listname{
   position: relative;
@@ -196,6 +225,8 @@ textarea{
   z-index: 1;
 }
 .liststate{
+  position: absolute;
+  top: 14px;
   height: 74px;
   background-color: rgba(255, 255, 255, 0.884);
   width: 272px;
@@ -207,9 +238,11 @@ textarea{
 }
 .cardtext{
   padding: 3px;
+  margin: 6px 7px;
   text-indent: 5px;
   box-shadow: 0px 1px 1px rgba(128, 128, 128, 0.527);
   background-color: #f4f5f7;
+  border-radius: 3px;
 }
 .cardsetting{
   background-color: #f4f5f7;
@@ -222,18 +255,51 @@ textarea{
   border-radius: 5px;
   cursor: default;
 }
-.cardexit{
-  position: fixed;
-  top: 30%;
-  left: 50%;
+.commentexit{
+  position: absolute;
   text-indent: 11px;
   padding-top: 5px;
+  left: 17%;
+  top: 9px;
+  color: #9b9b9bc9;
 }
-.cardexit:hover {
+.commentexit:hover{
+  color: #c40909b0;
+}
+.commentstate, .desstate{
+  position: relative;
+  width: 600px;
+  height: 40px;
+  left: 30px;
+  background-color: #80808042;
+  border-radius: 3px;
+  margin: 4px;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 20px;
+}
+#comments, #textarea{
+  position: relative;
+  float: left;
+  width: 600px;  
+  margin-left: 34px;
+  min-height: 50px;
+}
+.commentstate:hover, .desstate:hover{
+  background-color: #808080bd;
+}
+.commentinput{
+  margin-left: 34px;
+}
+.cardexit{
+  position: absolute;  
+  right: 10px;
+  padding: 2px 10px 6px 10px;
+  font-size: 20px;
+}
+.cardexit:hover{
   background-color: rgba(128, 128, 128, 0.521);
   border-radius: 15px;
-  width: 30px;
-  height: 25px;
 }
 .boardbase {
   position: fixed;
@@ -247,4 +313,84 @@ textarea{
 .timePicker{
   position: absolute;
   background-color: #f4f5f7;
+  z-index: 1;
+}
+.placeHolder{
+  position: relative;
+  background-color: rgba(82, 82, 82, 0.192);
+  float: left;
+  top: 3px;
+  left: 3px;
+  margin: 4px;
+  width: 272px;
+  height: 77px;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 75px;
+}
+.placeHolder::before{
+  content: "여기에 놓기";
+  color: rgb(255, 255, 255);
+}
+.dragable{
+  background-color: rgba(220, 20, 60, 0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.settingbox{
+  position: relative;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+.settingname{
+  position: relative;
+  font-size: 20px;
+  top: -10px;
+}
+.commentbox{
+  position: relative;
+  left: 35px;
+  border-radius: 3px;
+  padding: 5px;
+}
+.commenttext{
+  color: #00000073;
+}
+.combox{
+  background-color: rgba(82, 82, 82, 0.192);
+  width: 600px;
+  border-radius: 3px;
+  margin-top: 5px;
+  padding: 3px;
+}
+.comdate{
+  margin-left: 5px;
+  color: #6d6d6db4;
+}
+.titlebox{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.timestate{
+  margin-left: 33px;
+}
+.submitstate{
+  display: inline-block;
+}
+.carddate{
+  margin: 5px 0px 0px 32px;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgba(82, 82, 82, 0.192);
+  width: 220px;
+  font-size: 20px;
+}
+.cardtitle{
+  color: #3d3d3dbe;  
+}
+.cardtitle:hover{
+  color: #3d3d3d;
 }

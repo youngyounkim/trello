@@ -10,6 +10,7 @@ const CARD_DES = 'CARDDES';
 const CARD_COM = 'CARDCOM';
 const COM_REMOVE = 'COMREMOVE'
 const TIME_ADD = 'TIMEADD';
+const LIST_DRAG = 'LISTDRAG'
 
 export const list_add = (data) => ({
     type: LIST_ADD,
@@ -62,7 +63,9 @@ export const time_add = (listno, cardno, date) => ({
     cardno,
     date
 })
-
+export const list_drag = () => ({
+    type: LIST_DRAG
+})
 
 var initialState = {
     maxNo: 1,
@@ -135,6 +138,12 @@ function reducer(state = initialState, action){
             }
         case TIME_ADD:
             lists[action.listno-1].cards[action.cardno-1].date = action.date;
+            return state;
+        case LIST_DRAG:
+            for(var i = 0; i < lists.length; i++){
+                lists[i].listno = i + 1;
+            }
+            console.log(state)         
             return state;
         default:
             return state;

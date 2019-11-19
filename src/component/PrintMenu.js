@@ -43,7 +43,7 @@ class PrintMenu extends Component {
         e.preventDefault();
         const target = document.getElementById("selbox");        
         store.dispatch(move_list(target.value, this.props.item.listno));
-        this.setState({selectbox : true})
+        this.setState({menu: true, selectbox : true})
     }
     render(){
         var selectdata = this.state.storestate.lists.map((data) => {            
@@ -55,27 +55,22 @@ class PrintMenu extends Component {
             }
              
         });
-        var whith = this.props.item.listno-1;
-        console.log(whith);
-        var style = {
-            left: 240 + whith*280+'px'
-        }
-        var position = {left : 246 + whith*280+'px'} 
+        
         return (
             <div >                
-                <div className ="listmenu" style = {position} onClick = {this.changeType} >...</div> 
-                {this.state.menu === false ? (<div className ="menu" style = {style}>
+                <div className ="listmenu"  onClick = {this.changeType} >...</div> 
+                {this.state.menu === false ? (<div className ="menu" >
                     <div className = "menutitle">리스트 관리</div>
                     <div className = "menuexit" onClick = {this.changeType}>X</div>
                     <div className = "menubutton" type = "button" onClick = {this.copyList}>리스트 복사</div>
                     <div className = "menubutton" type = "button" onClick = {this.addCard}>카드 추가</div>
                     {this.state.selectbox === true ? 
                     (<div className = "menubutton" type = "button" onClick = {(e) => {e.preventDefault(); this.setState({selectbox : false})}}>리스트 이동</div>) 
-                    : (<div>
-                        <h2>원하는 위치로 이동해주세요</h2>
+                    : (<div className = "movelist">
+                        <h3>원하는 위치로 이동해주세요</h3>
                         <select id = "selbox" name = "selbox">{selectdata}
                         </select>
-                        <button onClick ={this.moveList}>이동</button>
+                        <button className = "addinput" onClick ={this.moveList}>이동</button>
                         </div>)}                    
                     <div className = "menubutton" type = "button" onClick = {this.archiveList}>일정 완료</div>
                 </div>): (<div></div>)}

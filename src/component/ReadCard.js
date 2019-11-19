@@ -11,19 +11,27 @@ class ReadCard extends Component {
             cardtype: true
         };
     }
+    cardSettingExit = (e) => {
+        e.preventDefault();        
+        this.setState({ cardtype: true });
+        this.props.canDoingDrag();
+    }
+
     render() {
         console.log(this.props)
         const datas = this.props.cards;
         const listno = this.props.listno;
         let ReadCard = datas.map(({ cardNo, cardtitle }) =>
             <div key={cardNo}>                
-                <div className = "cardtext" onClick={(e) => { e.preventDefault(); this.setState({ cardtype: false }) }}>{cardtitle}</div>
+                <div className = "cardtext" onClick={(e) => { 
+                    e.preventDefault(); 
+                    this.setState({ cardtype: false }); 
+                    this.props.notDoingDrag() }}>{cardtitle}</div>
                 {this.state.cardtype === false ?
                     (<div className = "boardbase">
                     <div className = "cardboard">                   
-                    <CardSetting cardNo={cardNo} cardtitle={cardtitle} listno={listno} >                      
-                    </CardSetting>
-                    <div className = "cardexit" onClick={(e) => { e.preventDefault(); this.setState({ cardtype: true }) }}>X</div>
+                    <CardSetting cardNo={cardNo} cardtitle={cardtitle} listno={listno} cardexit = {this.cardSettingExit} >                      
+                    </CardSetting>                    
                     </div></div>)
                     : (<div></div>)}
             </div>)

@@ -13,9 +13,8 @@ class App extends Component {
       <div className = "mainpage">
         <div className = "mainbar">          
           <a href = "/" className = "logo">
-            <div>
-              <span className = "logo1"></span>
-              <span className = "logo2"></span>
+            <div className = "logtext">YYSchedule
+              
             </div>            
           </a>
         </div>
